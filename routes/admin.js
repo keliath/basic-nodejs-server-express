@@ -1,15 +1,24 @@
+const path = require('path');
+
 const express = require('express');
+
+const rootDir = require('../utils/path');
 
 const router = express.Router();
 
+const products = []; //share request in server across all users
+
 router.get('/add-product', (req, res, next) => {
-    res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Send</button></form>');
+    res.sendFile(path.join(rootDir, "views", 'add-product.html'));
 });
 
 //use post or get (or put, patch) to trigger the middleware when only post or get data request
-router.post('/product', (req, res, next) => {
-    console.log(req.body);
+router.post('/add-product', (req, res, next) => {
+    products.push({
+        title: req.body.title
+    });
     res.redirect('/');
 });
 
-module.exports = router;
+exports.routes = router;
+exports.products = products;
