@@ -3,12 +3,13 @@ const path = require("path");
 const express = require('express');
 
 const app = express();
-const expressHbr = require('express-handlebars');
+// const expressHbr = require('express-handlebars');
 
-app.engine('hbs', expressHbr({ layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs' })); //handlebars template engine --- views/layouts/ its the dafault value
+// app.engine('hbs', expressHbr({ layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs' })); //handlebars template engine --- views/layouts/ its the dafault value
 
 // app.set('view engine', 'pug'); 
-app.set('view engine', 'hbs');
+// app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 app.set('views', 'views'); //type views it wouldnt necessary because its already the deafult value
 
 const adminData = require('./routes/admin');
